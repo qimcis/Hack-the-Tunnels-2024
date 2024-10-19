@@ -1,7 +1,7 @@
 import "./style.scss";
 
 function Page() {
-  return <div>Hello World!</div>;
+  return <div>TESTESTEST</div>;
 }
 
 export default Page;
