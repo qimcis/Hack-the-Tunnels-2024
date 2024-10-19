@@ -23,18 +23,18 @@ function Login() {
         <div className="Login__panel__content">
           <img src="/VictorLiUni.png"></img>
           <div className="Login__panel__content__message">
-            <div>Welcome to the Carleton SSO Federated Portal.</div>
+            <div>Welcome to the Victor Li SSO Federated Portal.</div>
             <div>
               Enter your{" "}
               <a href="https://myone.carleton.ca" target="blank">
-                MyCarletonOne
+                MyVictorLiOne
               </a>{" "}
               username and password.
             </div>
           </div>
           {message && <p>{message}</p>}
           <div className="Login__panel__content__input">
-            <input type="text" placeholder="MyCarletonOne username"></input>
+            <input type="text" placeholder="MyVictorLiOne username"></input>
             <input type="password" placeholder="Password"></input>
           </div>
           <div className="Login__panel__content__checkbox">
