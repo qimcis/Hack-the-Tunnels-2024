@@ -18,9 +18,10 @@ function NotFound() {
   }, [isDarkMode]);
 
   return (
-    <Layout title={"IM SORRY UWU Page not found OWO かわいい"}>
+    <Layout title={"IM SORRY UWU Page not found OWO かわいい <33"}>
       <h1>404</h1>
-      <img src="victorLiMaid.png" alt="VictorUWU" />
+      {/* Add the 'spin' class to make the image spin */}
+      <img src="victorLiMaid.png" alt="VictorUWU" className="spin" />
       <h3>Toggle Dark/Light Mode:</h3>
       <button onClick={toggleDarkMode}>
         {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}

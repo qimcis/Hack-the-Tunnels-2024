@@ -1,23 +1,20 @@
-:root {
-    --background-color: #ffffff;
-    --text-color: #000000;
+/* Spin animation that runs only once */
+.spin {
+    animation: spin 3s linear 1; /* The last '1' specifies the animation runs only once */
   }
   
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Optional: Dark Mode Styles */
   .dark-mode {
-    --background-color: #121212;
-    --text-color: #e0e0e0;
-  }
-  
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  h1 {
-    font-size: 3rem;
-  }
-  
-  img {
-    width: 200px;
+    background-color: #121212;
+    color: #e0e0e0;
   }
   
