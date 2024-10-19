@@ -34,7 +34,7 @@ function Login() {
           </div>
           {message && <p>{message}</p>}
           <div className="Login__panel__content__input">
-            <input type="text" placeholder="MyCarletonOne username"></input>
+            <input type="text" placeholder="MyVictorLiOne username"></input>
             <input type="password" placeholder="Password"></input>
           </div>
           <div className="Login__panel__content__checkbox">
