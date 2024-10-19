@@ -1,38 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Central as Layout } from "@/layouts";
 import './Menu.style.scss';
 
+type MenuItem = ReactNode;
+
+interface Section {
+  title: string;
+  items: MenuItem[];
+}
+
 const Menu: React.FC = () => {
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const toggleSection = (title: string) => {
     setOpenSection(openSection === title ? null : title);
   };
 
-  const renderSection = (title: string, items: React.ReactNode[]) => (
-    <div className="cabinet-section" key={title}>
-      <button 
-        className={`accordion-trigger ${openSection === title ? 'open' : ''}`} 
-        onClick={() => toggleSection(title)}
-      >
-        {title}
-        <span className="accordion-icon">{openSection === title ? '▲' : '▼'}</span>
-      </button>
-      <div className={`accordion-content ${openSection === title ? 'open' : ''}`}>
-        <div className="cabinet-section__content">
-          <div className="cabinet-section__image-container"></div>
-          <ul className="cabinet-section__items">
-            {items.map((item, index) => (
-              <li key={index} className="menu-section__item">{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-
-  const sections = [
+  const sections: Section[] = [
     {
       title: "GIVE ME ALL YOUR PERSONAL INFORMATION 🔫",
       items: [
@@ -157,12 +143,82 @@ const Menu: React.FC = () => {
     }
   ];
 
+  const searchInItem = (item: MenuItem, term: string): boolean => {
+    if (React.isValidElement(item)) {
+      const childrenText = item.props.children;
+      if (typeof childrenText === 'string') {
+        return childrenText.toLowerCase().includes(term);
+      } else if (Array.isArray(childrenText)) {
+        return childrenText.some(child => 
+          typeof child === 'string' && child.toLowerCase().includes(term)
+        );
+      }
+    }
+    return false;
+  };
+
+  const sectionsWithMatches = useMemo(() => {
+    if (!searchTerm) return new Set<string>();
+    
+    const lowercaseSearchTerm = searchTerm.toLowerCase();
+    const matchingSections = new Set<string>();
+
+    sections.forEach(section => {
+      if (section.title.toLowerCase().includes(lowercaseSearchTerm) ||
+          section.items.some(item => searchInItem(item, lowercaseSearchTerm))) {
+        matchingSections.add(section.title);
+      }
+    });
+
+    return matchingSections;
+  }, [sections, searchTerm]);
+
+  const renderSection = (section: Section) => {
+    const hasMatch = sectionsWithMatches.has(section.title);
+    return (
+      <div className={`cabinet-section ${hasMatch ? 'has-match' : ''}`} key={section.title}>
+        <button 
+          className={`accordion-trigger ${openSection === section.title ? 'open' : ''} ${hasMatch ? 'match' : ''}`} 
+          onClick={() => toggleSection(section.title)}
+        >
+          {section.title}
+          <span className="accordion-icon">{openSection === section.title ? '▲' : '▼'}</span>
+        </button>
+        <div className={`accordion-content ${openSection === section.title ? 'open' : ''}`}>
+          <div className="cabinet-section__content">
+            <div className="cabinet-section__image-container"></div>
+            <ul className="cabinet-section__items">
+              {section.items.map((item, index) => (
+                <li key={index} className="menu-section__item">
+                  {searchTerm && searchInItem(item, searchTerm.toLowerCase()) ? (
+                    <span className="highlight">{item}</span>
+                  ) : (
+                    item
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Layout title="Victor Li's Home">
       <div className="main-menu">
         <h1 className="main-menu__title">Victor Li's Home</h1>
+        <div className="main-menu__search">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="main-menu__search-input"
+          />
+        </div>
         <div className="main-menu__content">
-          {sections.map(section => renderSection(section.title, section.items))}
+          {sections.map(section => renderSection(section))}
         </div>
       </div>
     </Layout>
