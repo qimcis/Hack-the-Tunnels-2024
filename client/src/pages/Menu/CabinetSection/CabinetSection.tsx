@@ -9,7 +9,7 @@ interface CabinetSectionProps {
 function CabinetSection({ title, lineItems }: CabinetSectionProps) {
   return (
     <div className="CabinetSection">
-      <img src="cabinet.gif"></img>
+      <img src="victorCabinet.png"></img>
       <div>
         <div>{title}</div>
         <ul>
