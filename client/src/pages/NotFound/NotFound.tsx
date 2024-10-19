@@ -18,7 +18,7 @@ function NotFound() {
   }, [isDarkMode]);
 
   return (
-    <Layout title={"IM SORRY UWU Page not found OWO かわいい <33"}>
+    <Layout title={"IM SORRY UWU Page not found OWO かわいい <333"}>
       <h1>404</h1>
       {/* Add the 'spin' class to make the image spin */}
       <img src="victorLiMaid.png" alt="VictorUWU" className="spin" />
