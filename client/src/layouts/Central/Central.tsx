@@ -24,7 +24,7 @@ function Central({ title, children }: Props) {
         <div className="Central__page__footer">
           <div className="Central__page__footer__release">Release: 8.10.1</div>
           <div className="Central__page__footer__copyright">
-            © 2024 Ellucian Company L.P. and its affiliates.
+            © 2024 Victor Li Fanclub
           </div>
         </div>
       </div>
