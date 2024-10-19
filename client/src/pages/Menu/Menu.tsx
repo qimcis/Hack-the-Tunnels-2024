@@ -34,7 +34,7 @@ const Menu: React.FC = () => {
 
   const sections = [
     {
-      title: "Personal Information",
+      title: "GIVE ME ALL YOUR PERSONAL INFORMATION 🔫",
       items: [
         <Link to="/404">
           <b>Self Identification Survey</b>
@@ -60,7 +60,7 @@ const Menu: React.FC = () => {
       ]
     },
     {
-      title: "Student Records",
+      title: "CHATGPT?? TO THE DEAN!!! 😡😡😡",
       items: [
         <span>
           <b>Graduate Admissions:</b> Graduate Admissions and Graduate In-
@@ -85,7 +85,7 @@ const Menu: React.FC = () => {
       ]
     },
     {
-      title: "Registration",
+      title: "TOUR DATES AND GIVE ME YOUR MONEY 🤑",
       items: [
         <span>
           <b>Registration: </b>
@@ -115,7 +115,7 @@ const Menu: React.FC = () => {
       ]
     },
     {
-      title: "Academic Progress",
+      title: "VICTOR LI FAN MEET UP 🧍🧍",
       items: [
         <span>
           <b>myAudit:</b> View academic audit.
@@ -126,7 +126,7 @@ const Menu: React.FC = () => {
       ]
     },
     {
-      title: "Awards and Financial Assistance",
+      title: "FAN MAIL UWU 💌💌",
       items: [
         <span>
           <b>Student Award Information:</b>
